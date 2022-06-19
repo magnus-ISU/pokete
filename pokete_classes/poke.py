@@ -281,6 +281,12 @@ can't have more than 4 attacks!"
                    shiny=_dict.get("shiny", False), nature=_dict.get("nature"))
 
 
+def level_up_tasks(poke, figure, _map):
+    poke.set_vars()
+    poke.learn_attack(_map)
+    poke.evolve(figure, _map)
+
+
 def upgrade_by_one_lvl(poke, figure, _map):
     """Upgrades a Pokete by exactly one level, this will only be used by treats
     ARGS:
@@ -288,6 +294,4 @@ def upgrade_by_one_lvl(poke, figure, _map):
         figure: The figure object the Pokete belongs to
         _map: The map the upgrade happens on"""
     poke.add_xp((poke.lvl()+1)**2-1 - ((poke.lvl())**2-1))
-    poke.set_vars()
-    poke.learn_attack(_map)
-    poke.evolve(figure, _map)
+    poke.level_up_tasks(poke, figure, _map)
