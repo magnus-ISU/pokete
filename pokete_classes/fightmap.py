@@ -413,9 +413,7 @@ class FightMap(gm.GameMap):
             )
             winner.curr.moves.shine()
             time.sleep(0.5)
-            winner.curr.set_vars()
-            winner.curr.learn_attack(self)
-            winner.curr.evolve(winner, self)
+            winner.curr.level_up_tasks()
         self.show()
         time.sleep(1)
         ico = loser.curr.ico
