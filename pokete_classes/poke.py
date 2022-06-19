@@ -281,10 +281,10 @@ can't have more than 4 attacks!"
                    shiny=_dict.get("shiny", False), nature=_dict.get("nature"))
 
 
-def level_up_tasks(poke, figure, _map):
-    poke.set_vars()
-    poke.learn_attack(_map)
-    poke.evolve(figure, _map)
+    def level_up_tasks(poke, figure, _map):
+        poke.set_vars()
+        poke.learn_attack(_map)
+        poke.evolve(figure, _map)
 
 
 def upgrade_by_one_lvl(poke, figure, _map):
