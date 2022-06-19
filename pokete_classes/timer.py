@@ -3,9 +3,11 @@
 import logging
 import time as time_mod
 import scrap_engine as se
-from .event import _ev
+
+from pokete_classes.hotkeys import Action, get_action
 from .ui_elements import Box
 from .loops import std_loop
+from pokete_classes.constants import SPEED_OF_TIME
 
 time = None
 clock = None
@@ -113,9 +115,9 @@ class Clock(Box):
         raw_time = self.time.time
         with self.center_add(_map):
             while True:
-                if _ev.get() in ["'q'", "Key.esc"]:
-                    _ev.clear()
-                    break
+                match get_action():
+                    case Action.CANCEL | Action.CLOCK:
+                        break
                 if self.time.time == raw_time + 1:
                     d_p = not d_p
                     letter_obs = self.draw_letters(d_p, letter_obs)
@@ -154,6 +156,6 @@ class Clock(Box):
 def time_threat():
     """Manages the time counting"""
     while True:
-        time_mod.sleep(1)
+        time_mod.sleep(SPEED_OF_TIME * 1)
         if time.time < time.last_input + 120:
             time.time += 1
